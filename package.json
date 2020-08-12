@@ -1,0 +1,24 @@
+{
+  "name": "ahs_standalone",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Lucas Lima",
+  "license": "MIT",
+  "bin": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "deploy:production": "pkg . --out-path installer/production/bin --target=win",
+    "predeploy:production": "rm -rf installer/production/* && cp -R __deploy__/src/* installer/production",
+    "postdeploy:production": "cp -R cert installer/production/bin && cp -R app installer/production/bin && cp -R __deploy__/.production-env installer/production/bin/.env-model && cp -R __deploy__/.production-config installer/production/bin/service.config.bat"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4",
+    "pkg": "^4.4.9"
+  }
+}
